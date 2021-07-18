@@ -1,19 +1,30 @@
-text = 'To be, or not to be, that is the question!'
-s = 17
-alf = 'abcdefghijklmnopqrstuvwxyz'
-alfup = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
-shifr = ''
-for i in text:
-    if i.isalpha() and i in alf:
-        if int(alf.index(i)) + s > len(alf):
-            shifr += alf[(int (alf.index (i)) - len(alf)) + s]
-        else:
-            shifr += alf[int (alf.index (i)) + s]
-    elif i.isalpha() and i in alfup:
-        if int (alfup.index(i)) + s > len(alfup):
-            shifr += alfup[(int (alfup.index (i)) - len(alfup)) + s]
-        else:
-            shifr += alfup[int (alfup.index (i)) + s]
-    else:
-        shifr += i
-print (shifr, end='')
+text = input().split(' ')
+alfeng = 'abcdefghijklmnopqrstuvwxyz'
+alfengup = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+print(text)
+def kolvo_bukv(slovo): # посчитаем сдвиг
+    count = 0
+    for i in slovo:
+        if i.isalpha():
+            count += 1
+    return int(count)
+def shifr_cesar(text): # функция шифрования
+    shifr = ''
+    for i in text:
+        for j in i:
+            if j.isalpha():
+                if j in alfengup:
+                    if (int(alfengup.index(j)) + kolvo_bukv(i)) >= len(alfengup):
+                        shifr += alfengup[int (alfengup.index (j)) + kolvo_bukv(i) - len(alfengup)]
+                    else:
+                        shifr += alfengup[int(alfengup.index(j)) + kolvo_bukv(i)]
+                elif j in alfeng:
+                    if (int (alfeng.index (j)) + kolvo_bukv(i)) >= len(alfeng):
+                        shifr += alfeng[int (alfeng.index (j)) - len (alfeng) + kolvo_bukv(i)]
+                    else:
+                        shifr += alfeng[int (alfeng.index (j)) + kolvo_bukv(i)]
+            else:
+                shifr += j
+        shifr += ' '
+    return shifr
+print(shifr_cesar(text))
