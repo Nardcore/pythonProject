@@ -1,4 +1,5 @@
 print()
+print()
 text = input().split(' ')
 alfeng = 'abcdefghijklmnopqrstuvwxyz'
 alfengup = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
